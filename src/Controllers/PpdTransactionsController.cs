@@ -27,11 +27,11 @@ namespace UK_Property_API.Controllers
             return await _context.PpdTransactions.FirstAsync(p => p.Postcode == "GU51 5TU");
         }
 
-        // GET: api/PpdTransactions/5
-        [HttpGet("{id}")]
-        public async Task<ActionResult<PpdTransaction>> GetPpdTransaction(Guid id)
+        // GET: api/PpdTransactions/Cheshire
+        [HttpGet("{County}")]
+        public async Task<ActionResult<PpdTransaction>> GetPpdTransaction(String County)
         {
-            var ppdTransaction = await _context.PpdTransactions.FindAsync(id);
+            var ppdTransaction = await _context.PpdTransactions.FirstAsync(p => p.County == County);
 
             if (ppdTransaction == null)
             {
@@ -44,80 +44,80 @@ namespace UK_Property_API.Controllers
         // PUT: api/PpdTransactions/5
         // To protect from overposting attacks, please enable the specific properties you want to bind to, for
         // more details see https://aka.ms/RazorPagesCRUD.
-        [HttpPut("{id}")]
-        public async Task<IActionResult> PutPpdTransaction(Guid id, PpdTransaction ppdTransaction)
-        {
-            if (id != ppdTransaction.TransactionUniqueIdentifier)
-            {
-                return BadRequest();
-            }
+        //[HttpPut("{id}")]
+        //public async Task<IActionResult> PutPpdTransaction(Guid id, PpdTransaction ppdTransaction)
+        //{
+        //    if (id != ppdTransaction.TransactionUniqueIdentifier)
+        //    {
+        //        return BadRequest();
+        //    }
 
-            _context.Entry(ppdTransaction).State = EntityState.Modified;
+        //    _context.Entry(ppdTransaction).State = EntityState.Modified;
 
-            try
-            {
-                await _context.SaveChangesAsync();
-            }
-            catch (DbUpdateConcurrencyException)
-            {
-                if (!PpdTransactionExists(id))
-                {
-                    return NotFound();
-                }
-                else
-                {
-                    throw;
-                }
-            }
+        //    try
+        //    {
+        //        await _context.SaveChangesAsync();
+        //    }
+        //    catch (DbUpdateConcurrencyException)
+        //    {
+        //        if (!PpdTransactionExists(id))
+        //        {
+        //            return NotFound();
+        //        }
+        //        else
+        //        {
+        //            throw;
+        //        }
+        //    }
 
-            return NoContent();
-        }
+        //    return NoContent();
+        //}
 
         // POST: api/PpdTransactions
         // To protect from overposting attacks, please enable the specific properties you want to bind to, for
         // more details see https://aka.ms/RazorPagesCRUD.
-        [HttpPost]
-        public async Task<ActionResult<PpdTransaction>> PostPpdTransaction(PpdTransaction ppdTransaction)
-        {
-            _context.PpdTransactions.Add(ppdTransaction);
-            try
-            {
-                await _context.SaveChangesAsync();
-            }
-            catch (DbUpdateException)
-            {
-                if (PpdTransactionExists(ppdTransaction.TransactionUniqueIdentifier))
-                {
-                    return Conflict();
-                }
-                else
-                {
-                    throw;
-                }
-            }
+        //[HttpPost]
+        //public async Task<ActionResult<PpdTransaction>> PostPpdTransaction(PpdTransaction ppdTransaction)
+        //{
+        //    _context.PpdTransactions.Add(ppdTransaction);
+        //    try
+        //    {
+        //        await _context.SaveChangesAsync();
+        //    }
+        //    catch (DbUpdateException)
+        //    {
+        //        if (PpdTransactionExists(ppdTransaction.TransactionUniqueIdentifier))
+        //        {
+        //            return Conflict();
+        //        }
+        //        else
+        //        {
+        //            throw;
+        //        }
+        //    }
 
-            return CreatedAtAction("GetPpdTransaction", new { id = ppdTransaction.TransactionUniqueIdentifier }, ppdTransaction);
-        }
+        //    return CreatedAtAction("GetPpdTransaction", new { id = ppdTransaction.TransactionUniqueIdentifier }, ppdTransaction);
+        //}
 
         // DELETE: api/PpdTransactions/5
-        [HttpDelete("{id}")]
-        public async Task<ActionResult<PpdTransaction>> DeletePpdTransaction(Guid id)
-        {
-            var ppdTransaction = await _context.PpdTransactions.FindAsync(id);
-            if (ppdTransaction == null)
-            {
-                return NotFound();
-            }
+        //[HttpDelete("{id}")]
+        //public async Task<ActionResult<PpdTransaction>> DeletePpdTransaction(Guid id)
+        //{
+        //    var ppdTransaction = await _context.PpdTransactions.FindAsync(id);
+        //    if (ppdTransaction == null)
+        //    {
+        //        return NotFound();
+        //    }
 
-            _context.PpdTransactions.Remove(ppdTransaction);
-            await _context.SaveChangesAsync();
+        //    _context.PpdTransactions.Remove(ppdTransaction);
+        //    await _context.SaveChangesAsync();
 
-            return ppdTransaction;
-        }
+        //    return ppdTransaction;
+        //}
 
-        private bool PpdTransactionExists(Guid id)
-        {
-            return _context.PpdTransactions.Any(e => e.TransactionUniqueIdentifier == id);
-        }
+        //private bool PpdTransactionExists(Guid id)
+        //{
+        //    return _context.PpdTransactions.Any(e => e.TransactionUniqueIdentifier == id);
+        //}
     }
 }

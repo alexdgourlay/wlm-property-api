@@ -6,12 +6,12 @@ using Microsoft.Extensions.Configuration;
 
 namespace UK_Property_API.Models
 {
-    public partial class WLMPropertyContext : DbContext
+    public partial class WlmPropertyContext : DbContext
     {
-        public WLMPropertyContext() { }
+        public WlmPropertyContext() { }
 
 
-        public WLMPropertyContext(DbContextOptions<WLMPropertyContext> options)
+        public WlmPropertyContext(DbContextOptions<WlmPropertyContext> options)
             : base(options)
         {
         }
