@@ -11,6 +11,7 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Configuration;
 using Microsoft.EntityFrameworkCore;
 using UK_Property_API.Models;
+using GraphiQl;
 
 namespace UK_Property_API
 {
@@ -38,6 +39,9 @@ namespace UK_Property_API
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
         {
+            // Use GraphiQl, GraphQL testing tool.
+            app.UseGraphiQl();
+
             // Use model view controller service.
             app.UseMvc();
         }

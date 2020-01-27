@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\Alex Gourlay\\source\\repos\\UK_Property_API\\UK_Property_API.csproj": {}
+    "C:\\Users\\Alex Gourlay\\Documents\\SC_Workspace\\wlm-property-api\\src\\UK_Property_API.csproj": {}
   },
   "projects": {
-    "C:\\Users\\Alex Gourlay\\source\\repos\\UK_Property_API\\UK_Property_API.csproj": {
+    "C:\\Users\\Alex Gourlay\\Documents\\SC_Workspace\\wlm-property-api\\src\\UK_Property_API.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\Alex Gourlay\\source\\repos\\UK_Property_API\\UK_Property_API.csproj",
+        "projectUniqueName": "C:\\Users\\Alex Gourlay\\Documents\\SC_Workspace\\wlm-property-api\\src\\UK_Property_API.csproj",
         "projectName": "UK_Property_API",
-        "projectPath": "C:\\Users\\Alex Gourlay\\source\\repos\\UK_Property_API\\UK_Property_API.csproj",
+        "projectPath": "C:\\Users\\Alex Gourlay\\Documents\\SC_Workspace\\wlm-property-api\\src\\UK_Property_API.csproj",
         "packagesPath": "C:\\Users\\Alex Gourlay\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\Alex Gourlay\\source\\repos\\UK_Property_API\\obj\\",
+        "outputPath": "C:\\Users\\Alex Gourlay\\Documents\\SC_Workspace\\wlm-property-api\\src\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"
@@ -41,6 +41,10 @@
       "frameworks": {
         "netcoreapp3.0": {
           "dependencies": {
+            "GraphQL": {
+              "target": "Package",
+              "version": "[2.4.0, )"
+            },
             "Microsoft.AspNetCore.AzureAppServices.HostingStartup": {
               "target": "Package",
               "version": "[3.0.0, )"
@@ -66,6 +70,10 @@
             "Microsoft.Extensions.Logging.AzureAppServices": {
               "target": "Package",
               "version": "[3.0.0, )"
+            },
+            "graphiql": {
+              "target": "Package",
+              "version": "[1.2.0, )"
             }
           },
           "imports": [
