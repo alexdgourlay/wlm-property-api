@@ -43,7 +43,7 @@ namespace UK_Property_API
             app.UseGraphiQl();
 
             // Use model view controller service.
-            app.UseMvc();
+            //app.UseMvc();
         }
     }
 }

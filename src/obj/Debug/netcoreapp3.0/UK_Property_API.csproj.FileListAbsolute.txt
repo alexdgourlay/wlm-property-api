@@ -121,10 +121,10 @@ C:\Users\Alex Gourlay\Documents\SC_Workspace\wlm-property-api\src\bin\Debug\netc
 C:\Users\Alex Gourlay\Documents\SC_Workspace\wlm-property-api\src\obj\Debug\netcoreapp3.0\UK_Property_API.csprojAssemblyReference.cache
 C:\Users\Alex Gourlay\Documents\SC_Workspace\wlm-property-api\src\obj\Debug\netcoreapp3.0\staticwebassets\UK_Property_API.StaticWebAssets.Manifest.cache
 C:\Users\Alex Gourlay\Documents\SC_Workspace\wlm-property-api\src\obj\Debug\netcoreapp3.0\staticwebassets\UK_Property_API.StaticWebAssets.xml
-C:\Users\Alex Gourlay\Documents\SC_Workspace\wlm-property-api\src\obj\Debug\netcoreapp3.0\UK_Property_API.MvcApplicationPartsAssemblyInfo.cache
 C:\Users\Alex Gourlay\Documents\SC_Workspace\wlm-property-api\src\obj\Debug\netcoreapp3.0\UK_Property_API.AssemblyInfoInputs.cache
 C:\Users\Alex Gourlay\Documents\SC_Workspace\wlm-property-api\src\obj\Debug\netcoreapp3.0\UK_Property_API.AssemblyInfo.cs
 C:\Users\Alex Gourlay\Documents\SC_Workspace\wlm-property-api\src\obj\Debug\netcoreapp3.0\UK_Property_API.RazorTargetAssemblyInfo.cache
 C:\Users\Alex Gourlay\Documents\SC_Workspace\wlm-property-api\src\obj\Debug\netcoreapp3.0\UK_Property_API.csproj.CopyComplete
 C:\Users\Alex Gourlay\Documents\SC_Workspace\wlm-property-api\src\obj\Debug\netcoreapp3.0\UK_Property_API.dll
 C:\Users\Alex Gourlay\Documents\SC_Workspace\wlm-property-api\src\obj\Debug\netcoreapp3.0\UK_Property_API.pdb
+C:\Users\Alex Gourlay\Documents\SC_Workspace\wlm-property-api\src\obj\Debug\netcoreapp3.0\UK_Property_API.MvcApplicationPartsAssemblyInfo.cache

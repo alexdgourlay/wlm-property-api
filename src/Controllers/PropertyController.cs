@@ -21,10 +21,5 @@ namespace UK_Property_API.Controllers
 
             return _context.PropertyData;
         }
-
-        public ActionResult<IEnumerable<string>> GetString()
-        {
-            return new string[] { "this", "is", "hard", "coded" };
-        }
     }
 }
