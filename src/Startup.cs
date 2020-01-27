@@ -27,7 +27,7 @@ namespace UK_Property_API
         {
             string connectionString = Configuration["Data:UKPropertyAPIConnection:ConnectionString"];
           
-            services.AddDbContext<PropertyContext>(opt =>
+            services.AddDbContext<WLMPropertyContext>(opt =>
                                                opt.UseSqlServer(connectionString));
 
 
@@ -43,7 +43,7 @@ namespace UK_Property_API
             app.UseGraphiQl();
 
             // Use model view controller service.
-            //app.UseMvc();
+            app.UseMvc();
         }
     }
 }

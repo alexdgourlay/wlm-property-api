@@ -1,38 +1,48 @@
 ﻿using System;
+using System.IO;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.Extensions.Configuration;
 
 namespace UK_Property_API.Models
 {
     public partial class WLMPropertyContext : DbContext
     {
-        public WLMPropertyContext()
-        {
-        }
+        public WLMPropertyContext() { }
+
 
         public WLMPropertyContext(DbContextOptions<WLMPropertyContext> options)
             : base(options)
         {
         }
 
-        public virtual DbSet<GovPricePaidData> GovPricePaidData { get; set; }
+        public virtual DbSet<PpdTransaction> PpdTransactions { get; set; }
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
             if (!optionsBuilder.IsConfigured)
             {
-#warning To protect potentially sensitive information in your connection string, you should move it out of source code. See http://go.microsoft.com/fwlink/?LinkId=723263 for guidance on storing connection strings.
-                optionsBuilder.UseSqlServer("Server=tcp:wlmconsulting.database.windows.net,1433;Initial Catalog=WLM-Property;Persist Security Info=False;User ID=alexdgourlay;Password=96e5ff2d11WLM;MultipleActiveResultSets=False;Encrypt=True;TrustServerCertificate=False;Connection Timeout=30;");
+                IConfigurationRoot configuration = new ConfigurationBuilder()
+                   .SetBasePath(Directory.GetCurrentDirectory())
+                   .AddJsonFile("appsettings.json")
+                   .Build();
+                var connectionString = configuration.GetConnectionString("connectionString");
+                optionsBuilder.UseSqlServer(connectionString);
             }
         }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
-            modelBuilder.Entity<GovPricePaidData>(entity =>
+            modelBuilder.Entity<PpdTransaction>(entity =>
             {
-                entity.HasNoKey();
+                entity.HasKey(e => e.TransactionUniqueIdentifier)
+                    .HasName("PK_GOVPricePaidData_TransactionUniqueIdentifier");
 
-                entity.ToTable("GOV-PricePaidData");
+                entity.ToTable("GOVPricePaidData");
+
+                entity.Property(e => e.TransactionUniqueIdentifier)
+                    .HasColumnName("Transaction unique identifier")
+                    .ValueGeneratedNever();
 
                 entity.Property(e => e.County)
                     .HasMaxLength(250)
@@ -97,8 +107,6 @@ namespace UK_Property_API.Models
                     .HasColumnName("Town/City")
                     .HasMaxLength(250)
                     .IsUnicode(false);
-
-                entity.Property(e => e.TransactionUniqueIdentifier).HasColumnName("Transaction unique identifier");
             });
 
             OnModelCreatingPartial(modelBuilder);
