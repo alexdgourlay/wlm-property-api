@@ -13,9 +13,9 @@ namespace UK_Property_API.Controllers
     [ApiController]
     public class PpdTransactionsController : ControllerBase
     {
-        private readonly WLMPropertyContext _context;
+        private readonly WlmPropertyContext _context;
 
-        public PpdTransactionsController(WLMPropertyContext context)
+        public PpdTransactionsController(WlmPropertyContext context)
         {
             _context = context;
         }

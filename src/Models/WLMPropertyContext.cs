@@ -1,17 +1,17 @@
 ﻿using System;
 using System.IO;
 using Microsoft.EntityFrameworkCore;
-using Microsoft.EntityFrameworkCore.Metadata;
-using Microsoft.Extensions.Configuration;
 
 namespace UK_Property_API.Models
 {
-    public partial class WlmPropertyContext : DbContext
+    public partial class WLMPropertyContext : DbContext
     {
-        public WlmPropertyContext() { }
+        public ModelBuilder ModelBuilder { get; private set; }
+
+        public WLMPropertyContext() { }
 
 
-        public WlmPropertyContext(DbContextOptions<WlmPropertyContext> options)
+        public WLMPropertyContext(DbContextOptions<WLMPropertyContext> options)
             : base(options)
         {
         }
@@ -22,17 +22,19 @@ namespace UK_Property_API.Models
         {
             if (!optionsBuilder.IsConfigured)
             {
-                IConfigurationRoot configuration = new ConfigurationBuilder()
-                   .SetBasePath(Directory.GetCurrentDirectory())
-                   .AddJsonFile("appsettings.json")
-                   .Build();
-                var connectionString = configuration.GetConnectionString("connectionString");
-                optionsBuilder.UseSqlServer(connectionString);
+                //IConfigurationRoot configuration = new ConfigurationBuilder()
+                //   .SetBasePath(Directory.GetCurrentDirectory())
+                //   .AddJsonFile("appsettings.json")
+                //   .Build();
+                //var connectionString = configuration.GetConnectionString("connectionString");
+                //optionsBuilder.UseSqlServer(connectionString);
             }
         }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
+            ModelBuilder = modelBuilder;
+
             modelBuilder.Entity<PpdTransaction>(entity =>
             {
                 entity.HasKey(e => e.TransactionUniqueIdentifier)
