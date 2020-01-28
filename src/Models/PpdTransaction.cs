@@ -1,10 +1,12 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
 
 namespace WlmPropertyAPI.Models
 {
     public partial class PpdTransaction
     {
+        [Key]
         public Guid TransactionUniqueIdentifier { get; set; }
         public long Price { get; set; }
         public DateTime DateOfTransfer { get; set; }

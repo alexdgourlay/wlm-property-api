@@ -5,6 +5,6 @@ namespace WlmPropertyAPI.DataAccess.Contracts
 {
     public interface IPpdTransactionRepository
     {
-        IEnumerable<PpdTransaction> GetTop1000();
+        IEnumerable<PpdTransaction> GetTopN(int N);
     }
 }

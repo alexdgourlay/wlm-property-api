@@ -2,14 +2,13 @@
 using GraphQL.Types;
 using Microsoft.AspNetCore.Mvc;
 using System;
-using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using WlmPropertyAPI.Utilities;
 
 namespace WlmPropertyAPI.Controllers
 {
-    [Route("[controller")]
+    [Route("[controller]")]
     public class GraphQLController : Controller
     {
 
@@ -31,24 +30,24 @@ namespace WlmPropertyAPI.Controllers
                 throw new ArgumentNullException(nameof(query));
             }
 
-            var inputs = query.Variables?.ToInputs();
+            var inputs = query.Variables.ToInputs();
+
             var executionOptions = new ExecutionOptions
             {
                 Schema = _schema,
                 Query = query.Query,
-                Inputs = inputs
+                Inputs = inputs,
             };
 
             var result = await _documentExecuter
                 .ExecuteAsync(executionOptions);
 
-            if (result.Errors.Any())
+            if (result.Errors?.Count > 0)
             {
                 return BadRequest(result);
             }
 
             return Ok(result);
-
         }
     }
 }

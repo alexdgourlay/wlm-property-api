@@ -1,5 +1,5 @@
 ﻿using GraphQL;
-using WlmPropertyAPI.Utilities;
+using WlmPropertyAPI.Queries;
 
 namespace WlmPropertyAPI.Models
 {
@@ -7,7 +7,7 @@ namespace WlmPropertyAPI.Models
     {
         public WlmPropertySchema(IDependencyResolver resolver) : base(resolver)
         {
-            Query = resolver.Resolve<GraphQLQuery>();
+            Query = resolver.Resolve<PpdTransactionQuery>();
         }
     }
 }
