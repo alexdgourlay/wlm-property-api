@@ -6,8 +6,11 @@ namespace WlmPropertyAPI.Queries
 {
     public class PpdTransactionQuery : ObjectGraphType
     {
+        private int defaultN = 5;
+
         public PpdTransactionQuery(IPpdTransactionRepository ppdTransactionRepository)
         {
+
             Field<ListGraphType<PpdTransactionType>>(
                 "PpdTransactions",
                 arguments: new QueryArguments(
@@ -15,7 +18,7 @@ namespace WlmPropertyAPI.Queries
 
                 resolve: context =>
                 {
-                    var n = context.GetArgument<int>("n");
+                    var n = context.GetArgument<int>("n") | defaultN;
                     return ppdTransactionRepository.GetTopN(n);
                 }
             );
