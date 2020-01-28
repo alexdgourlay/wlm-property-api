@@ -2,7 +2,7 @@
 using System.IO;
 using Microsoft.EntityFrameworkCore;
 
-namespace UK_Property_API.Models
+namespace WlmPropertyAPI.Models
 {
     public partial class WLMPropertyContext : DbContext
     {

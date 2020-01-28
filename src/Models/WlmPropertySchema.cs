@@ -1,11 +1,13 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
+﻿using GraphQL;
+using WlmPropertyAPI.Utilities;
 
-namespace UK_Property_API.Models
+namespace WlmPropertyAPI.Models
 {
-    public class WlmPropertySchema
+    public class WlmPropertySchema : GraphQL.Types.Schema
     {
+        public WlmPropertySchema(IDependencyResolver resolver) : base(resolver)
+        {
+            Query = resolver.Resolve<GraphQLQuery>();
+        }
     }
 }

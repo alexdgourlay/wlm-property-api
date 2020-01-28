@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 
-namespace UK_Property_API.Models
+namespace WlmPropertyAPI.Models
 {
     public partial class PpdTransaction
     {

@@ -3,7 +3,7 @@ using GraphQL;
 using GraphQL.Types;
 using Microsoft.Extensions.DependencyInjection;
 
-namespace UK_Property_API.Models
+namespace WlmPropertyAPI.Models
 {
     public class PpdTransactionType : ObjectGraphType<PpdTransaction>
     {

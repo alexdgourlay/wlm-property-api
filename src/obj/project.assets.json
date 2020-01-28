@@ -1654,7 +1654,7 @@
           "System.Xml.XDocument": "4.3.0"
         }
       },
-      "Newtonsoft.Json/11.0.2": {
+      "Newtonsoft.Json/12.0.3": {
         "type": "package",
         "compile": {
           "lib/netstandard2.0/Newtonsoft.Json.dll": {}
@@ -5664,10 +5664,10 @@
         "netstandard.library.nuspec"
       ]
     },
-    "Newtonsoft.Json/11.0.2": {
-      "sha512": "znZGbws7E4BA9jxNZ7FuiIRI3C9hrgatVQSTKhIYZYNOud4M5VfGlTYi6RdYO5sQrebFuF/g9UEV3hOxDMXF6Q==",
+    "Newtonsoft.Json/12.0.3": {
+      "sha512": "6mgjfnRB4jKMlzHSl+VD+oUc1IebOZabkbyWj2RiTgWwYPPuaK1H97G1sHqGwPlS5npiF5Q0OrxN1wni2n5QWg==",
       "type": "package",
-      "path": "newtonsoft.json/11.0.2",
+      "path": "newtonsoft.json/12.0.3",
       "files": [
         ".nupkg.metadata",
         ".signature.p7s",
@@ -5690,8 +5690,9 @@
         "lib/portable-net40+sl5+win8+wp8+wpa81/Newtonsoft.Json.xml",
         "lib/portable-net45+win8+wp8+wpa81/Newtonsoft.Json.dll",
         "lib/portable-net45+win8+wp8+wpa81/Newtonsoft.Json.xml",
-        "newtonsoft.json.11.0.2.nupkg.sha512",
-        "newtonsoft.json.nuspec"
+        "newtonsoft.json.12.0.3.nupkg.sha512",
+        "newtonsoft.json.nuspec",
+        "packageIcon.png"
       ]
     },
     "Newtonsoft.Json.Bson/1.0.1": {
@@ -10454,6 +10455,7 @@
       "Microsoft.Extensions.Logging.AzureAppServices >= 3.0.0",
       "Microsoft.Extensions.Logging.Debug >= 3.0.0",
       "Microsoft.VisualStudio.Web.CodeGeneration.Design >= 3.0.0",
+      "Newtonsoft.Json >= 12.0.3",
       "graphiql >= 1.2.0"
     ]
   },
@@ -10464,9 +10466,9 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\Alex Gourlay\\Documents\\SC_Workspace\\wlm-property-api\\src\\UK_Property_API.csproj",
-      "projectName": "UK_Property_API",
-      "projectPath": "C:\\Users\\Alex Gourlay\\Documents\\SC_Workspace\\wlm-property-api\\src\\UK_Property_API.csproj",
+      "projectUniqueName": "C:\\Users\\Alex Gourlay\\Documents\\SC_Workspace\\wlm-property-api\\src\\WLM-Property-API.csproj",
+      "projectName": "WLM-Property-API",
+      "projectPath": "C:\\Users\\Alex Gourlay\\Documents\\SC_Workspace\\wlm-property-api\\src\\WLM-Property-API.csproj",
       "packagesPath": "C:\\Users\\Alex Gourlay\\.nuget\\packages\\",
       "outputPath": "C:\\Users\\Alex Gourlay\\Documents\\SC_Workspace\\wlm-property-api\\src\\obj\\",
       "projectStyle": "PackageReference",
@@ -10545,6 +10547,10 @@
           "Microsoft.VisualStudio.Web.CodeGeneration.Design": {
             "target": "Package",
             "version": "[3.0.0, )"
+          },
+          "Newtonsoft.Json": {
+            "target": "Package",
+            "version": "[12.0.3, )"
           },
           "graphiql": {
             "target": "Package",

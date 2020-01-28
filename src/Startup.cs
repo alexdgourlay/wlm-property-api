@@ -10,10 +10,10 @@ using Microsoft.Extensions.Hosting;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Configuration;
 using Microsoft.EntityFrameworkCore;
-using UK_Property_API.Models;
+using WlmPropertyAPI.Models;
 using GraphiQl;
 
-namespace UK_Property_API
+namespace WlmPropertyAPI
 {
     public class Startup
     {

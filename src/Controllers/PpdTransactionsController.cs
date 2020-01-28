@@ -5,17 +5,17 @@ using System.Threading.Tasks;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
-using UK_Property_API.Models;
+using WlmPropertyAPI.Models;
 
-namespace UK_Property_API.Controllers
+namespace WlmPropertyAPI.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
     public class PpdTransactionsController : ControllerBase
     {
-        private readonly WlmPropertyContext _context;
+        private readonly WLMPropertyContext _context;
 
-        public PpdTransactionsController(WlmPropertyContext context)
+        public PpdTransactionsController(WLMPropertyContext context)
         {
             _context = context;
         }
