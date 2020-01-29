@@ -21,12 +21,25 @@ namespace WlmPropertyAPI
     {
         public Startup(IConfiguration configuration) => Configuration = configuration;
 
+        // CORS named policy.
+        readonly string MyAllowSpecificOrigins = "_myAllowSpecificOrigins";
+
         public IConfiguration Configuration { get; }
 
         // This method gets called by the runtime. Use this method to add services to the container.
         // For more information on how to configure your application, visit https://go.microsoft.com/fwlink/?LinkID=398940
         public void ConfigureServices(IServiceCollection services)
         {
+            services.AddCors(options =>
+            {
+                options.AddPolicy(MyAllowSpecificOrigins,
+                builder =>
+                {
+                    builder.WithOrigins("http://localhost:4200",
+                                        "http://ukproperty.azurewebsites.net");
+                });
+            });
+
             string connectionString = Configuration["Data:UKPropertyAPIConnection:ConnectionString"];
 
             services.AddTransient<IPpdTransactionRepository, PpdTransactionRepository>();
@@ -58,6 +71,13 @@ namespace WlmPropertyAPI
             {
                 app.UseDeveloperExceptionPage();
             }
+
+            app.UseCors(MyAllowSpecificOrigins);
+
+            //app.UseEndpoints(endpoints =>
+            //{
+            //    endpoints.MapControllers();
+            //});
 
             // Use GraphiQl, GraphQL testing tool.
             app.UseGraphiQl();
