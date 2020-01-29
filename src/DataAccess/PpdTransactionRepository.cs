@@ -17,7 +17,6 @@ namespace WlmPropertyAPI.DataAccess
 
         public IEnumerable<PpdTransaction> GetTopN(int N)
         {
-     
             return _dbContext.PpdTransactions.Take(N);
         }
 

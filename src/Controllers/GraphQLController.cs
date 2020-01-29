@@ -1,8 +1,8 @@
 ﻿using GraphQL;
 using GraphQL.Types;
 using Microsoft.AspNetCore.Mvc;
+using Newtonsoft.Json;
 using System;
-using System.Linq;
 using System.Threading.Tasks;
 using WlmPropertyAPI.Utilities;
 
@@ -20,15 +20,17 @@ namespace WlmPropertyAPI.Controllers
             _schema = schema;
             _documentExecuter = documentExecuter;
 
-        }
+        
 
         [HttpPost]
         public async Task<IActionResult> Post([FromBody] GraphQLQuery query)
-        {
+        { 
             if (query == null)
             {
                 throw new ArgumentNullException(nameof(query));
             }
+
+            Console.WriteLine(query.ToString());
 
             var inputs = query.Variables.ToInputs();
 

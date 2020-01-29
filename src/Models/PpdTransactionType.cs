@@ -8,7 +8,9 @@ namespace WlmPropertyAPI.Models
         public PpdTransactionType()
         {
             //Name = "Price-Paid-Data-Transaction";
-            //Description = "Price Paid Data includes information on all property sales in England and Wales that are sold for value and are lodged with the HM Land Registry.";
+
+            Description = "Price Paid Data includes information on all property sales in England and Wales that are sold for value and are lodged with the HM Land Registry.";
+
             Field(x => x.TransactionUniqueIdentifier, type: typeof(IdGraphType))
                 .Description("A reference number which is generated automatically recording each published sale. The number is unique and will change each time a sale is recorded.");
 
