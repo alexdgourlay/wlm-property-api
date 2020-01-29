@@ -19,10 +19,9 @@ namespace WlmPropertyAPI
 {
     public class Startup
     {
-        public Startup(IConfiguration configuration) => Configuration = configuration;
+        private readonly string corsPolicyName = "ApiCorsPolicy";
 
-        // CORS named policy.
-        readonly string MyAllowSpecificOrigins = "_myAllowSpecificOrigins";
+        public Startup(IConfiguration configuration) => Configuration = configuration;
 
         public IConfiguration Configuration { get; }
 
@@ -32,13 +31,16 @@ namespace WlmPropertyAPI
         {
             services.AddCors(options =>
             {
-                options.AddPolicy(MyAllowSpecificOrigins,
+                options.AddPolicy(corsPolicyName,
                 builder =>
                 {
-                    builder.WithOrigins("http://localhost:4200",
-                                        "http://ukproperty.azurewebsites.net");
+                    builder
+                    .WithOrigins("http://localhost:4200")
+                    .AllowAnyMethod()
+                    .AllowAnyHeader();
                 });
             });
+
 
             string connectionString = Configuration["Data:UKPropertyAPIConnection:ConnectionString"];
 
@@ -72,12 +74,7 @@ namespace WlmPropertyAPI
                 app.UseDeveloperExceptionPage();
             }
 
-            app.UseCors(MyAllowSpecificOrigins);
-
-            //app.UseEndpoints(endpoints =>
-            //{
-            //    endpoints.MapControllers();
-            //});
+            app.UseCors(corsPolicyName);
 
             // Use GraphiQl, GraphQL testing tool.
             app.UseGraphiQl();
