@@ -1,4 +1,6 @@
 ﻿using System.Text;
+using Newtonsoft.Json.Linq;
+using Newtonsoft.Json;
 
 namespace WlmPropertyAPI.Utilities
 {
@@ -7,7 +9,8 @@ namespace WlmPropertyAPI.Utilities
         public string OperationName { get; set; }
         public string NamedQuery { get; set; }
         public string Query { get; set; }
-        public string Variables { get; set; }
+        public JObject Variables { get; set; }
+
 
         public override string ToString()
         {
@@ -15,19 +18,19 @@ namespace WlmPropertyAPI.Utilities
             builder.AppendLine();
             if (!string.IsNullOrWhiteSpace(OperationName))
             {
-                builder.AppendLine($"OperationName = {OperationName}");
+                builder.AppendLine($"OperationName {OperationName}");
             }
             if (!string.IsNullOrWhiteSpace(NamedQuery))
             {
-                builder.AppendLine($"NamedQuery = {NamedQuery}");
+                builder.AppendLine($"NamedQuery {NamedQuery}");
             }
             if (!string.IsNullOrWhiteSpace(Query))
             {
-                builder.AppendLine($"Query = {Query}");
+                builder.AppendLine($"Query {Query}");
             }
-            if (!string.IsNullOrWhiteSpace(Variables))
+            if (!string.IsNullOrWhiteSpace(JsonConvert.SerializeObject(Variables)))
             {
-                builder.AppendLine($"Variables = {Variables}");
+                builder.AppendLine($"Variables {JsonConvert.SerializeObject(Variables)}");
             }
 
             return builder.ToString();
