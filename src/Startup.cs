@@ -43,7 +43,7 @@ namespace WlmPropertyAPI
 
             services.AddTransient<IPpdTransactionRepository, PpdTransactionRepository>();
 
-            services.AddDbContext<WlmPropertyContext>(opt => { }, ServiceLifetime.Transient);
+            services.AddDbContext<WLMPropertyContext>(opt => { }, ServiceLifetime.Transient);
 
             services.AddSingleton<IDocumentExecuter, DocumentExecuter>();
             services.AddSingleton<PpdTransactionQuery>();

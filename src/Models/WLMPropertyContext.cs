@@ -1,47 +1,45 @@
 ﻿using System;
-using System.IO;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.EntityFrameworkCore.Metadata;
 using Microsoft.Extensions.Configuration;
 
 namespace WlmPropertyAPI.Models
 {
-    public partial class WlmPropertyContext : DbContext
+    public partial class WLMPropertyContext : DbContext
     {
-        public ModelBuilder ModelBuilder { get; private set; }
+        public WLMPropertyContext()
+        {
+        }
 
-        public WlmPropertyContext() { }
-
-        public WlmPropertyContext(DbContextOptions<WlmPropertyContext> options)
+        public WLMPropertyContext(DbContextOptions<WLMPropertyContext> options)
             : base(options)
         {
         }
 
-        public virtual DbSet<PpdTransaction> PpdTransactions { get; set; }
+        public virtual DbSet<PpdTransaction> PpdTransaction { get; set; }
+        public virtual DbSet<UkCounty> UkCounty { get; set; }
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
             if (!optionsBuilder.IsConfigured)
             {
                 IConfiguration configuration = new ConfigurationBuilder()
-                   .SetBasePath(Directory.GetCurrentDirectory())
+                   .SetBasePath(System.IO.Directory.GetCurrentDirectory())
                    .AddJsonFile("appsettings.json")
                    .Build();
 
                 var connectionString = configuration["Data:UKPropertyAPIConnection:ConnectionString"];
-                optionsBuilder.UseSqlServer(connectionString);
+                optionsBuilder.UseSqlServer(connectionString,
+                    opt => opt.EnableRetryOnFailure());
             }
         }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
-            ModelBuilder = modelBuilder;
-
             modelBuilder.Entity<PpdTransaction>(entity =>
             {
                 entity.HasKey(e => e.TransactionUniqueIdentifier)
                     .HasName("PK_GOVPricePaidData_TransactionUniqueIdentifier");
-
-                entity.ToTable("GOVPricePaidData");
 
                 entity.Property(e => e.TransactionUniqueIdentifier)
                     .HasColumnName("Transaction unique identifier")
@@ -109,6 +107,35 @@ namespace WlmPropertyAPI.Models
                 entity.Property(e => e.TownCity)
                     .HasColumnName("Town/City")
                     .HasMaxLength(250)
+                    .IsUnicode(false);
+
+                entity.HasOne(d => d.CountyNavigation)
+                    .WithMany(p => p.PpdTransaction)
+                    .HasForeignKey(d => d.County)
+                    .OnDelete(DeleteBehavior.Cascade)
+                    .HasConstraintName("FK_PpdTransaction_UkCounty");
+            });
+
+            modelBuilder.Entity<UkCounty>(entity =>
+            {
+                entity.HasKey(e => e.PpdCounty);
+
+                entity.Property(e => e.PpdCounty)
+                    .HasColumnName("PPD County")
+                    .HasMaxLength(250)
+                    .IsUnicode(false);
+
+                entity.Property(e => e.CeremonialOrPreservedCounty)
+                    .HasColumnName("Ceremonial or Preserved County")
+                    .HasMaxLength(50)
+                    .IsUnicode(false);
+
+                entity.Property(e => e.Country)
+                    .HasMaxLength(50)
+                    .IsUnicode(false);
+
+                entity.Property(e => e.Region)
+                    .HasMaxLength(50)
                     .IsUnicode(false);
             });
 

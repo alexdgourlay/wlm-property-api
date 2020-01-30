@@ -21,8 +21,8 @@ namespace WlmPropertyAPI.DataAccess
 
         public IEnumerable<PpdTransaction> GetTopN(int N)
         {
-            var _dbContext = _serviceProvider.GetRequiredService<WlmPropertyContext>();
-            return _dbContext.PpdTransactions.Take(N)
+            var _dbContext = _serviceProvider.GetRequiredService<WLMPropertyContext>();
+            return _dbContext.PpdTransaction.Take(N);
         }
 
         public IEnumerable<String> GetDistinctCounties()
