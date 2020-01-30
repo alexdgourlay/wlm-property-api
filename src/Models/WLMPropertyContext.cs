@@ -1,17 +1,17 @@
 ﻿using System;
 using System.IO;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.Configuration;
 
 namespace WlmPropertyAPI.Models
 {
-    public partial class WLMPropertyContext : DbContext
+    public partial class WlmPropertyContext : DbContext
     {
         public ModelBuilder ModelBuilder { get; private set; }
 
-        public WLMPropertyContext() { }
+        public WlmPropertyContext() { }
 
-
-        public WLMPropertyContext(DbContextOptions<WLMPropertyContext> options)
+        public WlmPropertyContext(DbContextOptions<WlmPropertyContext> options)
             : base(options)
         {
         }
@@ -22,12 +22,13 @@ namespace WlmPropertyAPI.Models
         {
             if (!optionsBuilder.IsConfigured)
             {
-                //IConfigurationRoot configuration = new ConfigurationBuilder()
-                //   .SetBasePath(Directory.GetCurrentDirectory())
-                //   .AddJsonFile("appsettings.json")
-                //   .Build();
-                //var connectionString = configuration.GetConnectionString("connectionString");
-                //optionsBuilder.UseSqlServer(connectionString);
+                IConfiguration configuration = new ConfigurationBuilder()
+                   .SetBasePath(Directory.GetCurrentDirectory())
+                   .AddJsonFile("appsettings.json")
+                   .Build();
+
+                var connectionString = configuration["Data:UKPropertyAPIConnection:ConnectionString"];
+                optionsBuilder.UseSqlServer(connectionString);
             }
         }
 

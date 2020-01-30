@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Microsoft.Extensions.DependencyInjection;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using WlmPropertyAPI.DataAccess.Contracts;
@@ -8,17 +9,30 @@ namespace WlmPropertyAPI.DataAccess
 {
     class PpdTransactionRepository : IPpdTransactionRepository
     {
-        private readonly WLMPropertyContext _dbContext;
+        //private readonly WlmPropertyContext _dbContext;
+        private readonly IServiceProvider _serviceProvider;
 
-        public PpdTransactionRepository(WLMPropertyContext dbContext)
+
+        public PpdTransactionRepository(IServiceProvider serviceProvider)
         {
-            _dbContext = dbContext;
+            //_dbContext = dbContext;
+            _serviceProvider = serviceProvider;
         }
 
         public IEnumerable<PpdTransaction> GetTopN(int N)
         {
-            return _dbContext.PpdTransactions.Take(N);
+            var _dbContext = _serviceProvider.GetRequiredService<WlmPropertyContext>();
+            return _dbContext.PpdTransactions.Take(N)
         }
 
+        public IEnumerable<String> GetDistinctCounties()
+        {
+            return GetTopN(2000).Select(x => x.County).Distinct();
+        }
+
+        public IEnumerable<PpdTransaction> GetByPostcode(string Postcode)
+        {
+            throw new NotImplementedException();
+        }
     }
 }

@@ -41,22 +41,15 @@ namespace WlmPropertyAPI
                 });
             });
 
-
-            string connectionString = Configuration["Data:UKPropertyAPIConnection:ConnectionString"];
-
             services.AddTransient<IPpdTransactionRepository, PpdTransactionRepository>();
 
-            services.AddDbContext<WLMPropertyContext>(opt =>
-                                               opt.UseSqlServer(connectionString));
+            services.AddDbContext<WlmPropertyContext>(opt => { }, ServiceLifetime.Transient);
 
             services.AddSingleton<IDocumentExecuter, DocumentExecuter>();
-
             services.AddSingleton<PpdTransactionQuery>();
-
             services.AddSingleton<PpdTransactionType>();
 
             var sp = services.BuildServiceProvider();
-
             services.AddSingleton<ISchema>(new WlmPropertySchema(new FuncDependencyResolver(type => sp.GetService(type))));
 
             // Add model view controller service.
