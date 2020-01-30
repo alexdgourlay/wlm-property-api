@@ -1,4 +1,5 @@
 ﻿using GraphQL.Types;
+using System.Collections.Generic;
 using WlmPropertyAPI.DataAccess.Contracts;
 using WlmPropertyAPI.Models;
 
@@ -22,6 +23,14 @@ namespace WlmPropertyAPI.Queries
                     return ppdTransactionRepository.GetTopN(n);
                 }
             );
+
+            Field<ListGraphType<StringGraphType>>(
+                "DistinctCounties",
+                resolve: context =>
+                {
+                    return ppdTransactionRepository.GetDistinctCounties();
+                });
+
         }
     }
 }
