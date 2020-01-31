@@ -1,5 +1,4 @@
 ﻿using GraphQL.Types;
-using System.Collections.Generic;
 using WlmPropertyAPI.DataAccess.Contracts;
 using WlmPropertyAPI.Models;
 
@@ -7,7 +6,7 @@ namespace WlmPropertyAPI.Queries
 {
     public class PpdTransactionQuery : ObjectGraphType
     {
-        private int defaultN = 5;
+        private int defaultN = 20;
 
         public PpdTransactionQuery(IPpdTransactionRepository ppdTransactionRepository)
         {

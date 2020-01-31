@@ -1,11 +1,12 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
+﻿using System.Collections.Generic;
+using WlmPropertyAPI.Models;
 
 namespace WlmPropertyAPI.DataAccess.Contracts
 {
-    interface IUkCountyRepository
+    public interface IUkCountyRepository
     {
+        IEnumerable<UkCounty> GetCounties();
+
+        UkCounty GetCounty(string county);
     }
 }

@@ -5,17 +5,15 @@ using System.Linq;
 using WlmPropertyAPI.DataAccess.Contracts;
 using WlmPropertyAPI.Models;
 
+
 namespace WlmPropertyAPI.DataAccess
 {
     class PpdTransactionRepository : IPpdTransactionRepository
     {
-        //private readonly WlmPropertyContext _dbContext;
         private readonly IServiceProvider _serviceProvider;
-
 
         public PpdTransactionRepository(IServiceProvider serviceProvider)
         {
-            //_dbContext = dbContext;
             _serviceProvider = serviceProvider;
         }
 

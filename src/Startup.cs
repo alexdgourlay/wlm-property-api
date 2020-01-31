@@ -1,19 +1,17 @@
-using Microsoft.AspNetCore.Builder;
-using Microsoft.AspNetCore.Hosting;
-using Microsoft.AspNetCore.Http;
-using Microsoft.Extensions.DependencyInjection;
-using Microsoft.Extensions.Hosting;
-using Microsoft.AspNetCore.Mvc;
-using Microsoft.Extensions.Configuration;
-using Microsoft.EntityFrameworkCore;
 using GraphiQl;
 using GraphQL;
-using WlmPropertyAPI.Models;
+using GraphQL.Types;
+using Microsoft.AspNetCore.Builder;
+using Microsoft.AspNetCore.Hosting;
+using Microsoft.AspNetCore.Mvc;
+using Microsoft.Extensions.Configuration;
+using Microsoft.Extensions.DependencyInjection;
+using Microsoft.Extensions.Hosting;
+using Newtonsoft.Json;
 using WlmPropertyAPI.DataAccess;
 using WlmPropertyAPI.DataAccess.Contracts;
+using WlmPropertyAPI.Models;
 using WlmPropertyAPI.Queries;
-using GraphQL.Types;
-using Newtonsoft.Json;
 
 namespace WlmPropertyAPI
 {
@@ -41,13 +39,20 @@ namespace WlmPropertyAPI
                 });
             });
 
-            services.AddTransient<IPpdTransactionRepository, PpdTransactionRepository>();
-
             services.AddDbContext<WLMPropertyContext>(opt => { }, ServiceLifetime.Transient);
-
             services.AddSingleton<IDocumentExecuter, DocumentExecuter>();
+
+            // Repositories
+            services.AddTransient<IPpdTransactionRepository, PpdTransactionRepository>();
+            services.AddTransient<IUkCountyRepository, UkCountyRepository>();
+
+            // GraphQL Queries.
             services.AddSingleton<PpdTransactionQuery>();
+            services.AddSingleton<UkCountyQuery>();
+
+            // GraphQL Types
             services.AddSingleton<PpdTransactionType>();
+            services.AddSingleton<UkCountyType>();
 
             var sp = services.BuildServiceProvider();
             services.AddSingleton<ISchema>(new WlmPropertySchema(new FuncDependencyResolver(type => sp.GetService(type))));

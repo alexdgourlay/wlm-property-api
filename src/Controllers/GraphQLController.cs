@@ -10,7 +10,6 @@ namespace WlmPropertyAPI.Controllers
     [Route("[controller]")]
     public class GraphQLController : Controller
     {
-
         private readonly ISchema _schema;
         private readonly IDocumentExecuter _documentExecuter;
 
@@ -19,11 +18,11 @@ namespace WlmPropertyAPI.Controllers
             _schema = schema;
             _documentExecuter = documentExecuter;
         }
-        
+
 
         [HttpPost]
         public async Task<IActionResult> Post([FromBody] GraphQLQuery query)
-        { 
+        {
             if (query == null)
             {
                 throw new ArgumentNullException(nameof(query));

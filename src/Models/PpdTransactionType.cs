@@ -1,13 +1,14 @@
 ﻿using GraphQL.Types;
+using WlmPropertyAPI.DataAccess.Contracts;
 
 namespace WlmPropertyAPI.Models
 {
     public class PpdTransactionType : ObjectGraphType<PpdTransaction>
     {
         // Field descriptions taken from .gov website, available at: https://www.gov.uk/government/statistical-data-sets/price-paid-data-downloads.
-        public PpdTransactionType()
+        public PpdTransactionType(IUkCountyRepository ukCountyRepository)
         {
-            //Name = "Price-Paid-Data-Transaction";
+            Name = "PpdTransaction";
 
             Description = "Price Paid Data includes information on all property sales in England and Wales that are sold for value and are lodged with the HM Land Registry.";
 
@@ -53,6 +54,12 @@ namespace WlmPropertyAPI.Models
 
             Field(x => x.RecordStatus)
                    .Description("Indicates additions, changes and deletions to the records.(see guide below). A= Addition. C = Change. D = Delete. Note that where a transaction changes category type due to misallocation(as above) it will be deleted from the original category type and added to the correct category with a new transaction unique identifier.");
+
+     
+            Field(
+            name: "ukCounty",
+            type: typeof(UkCountyType),
+            resolve: context => ukCountyRepository.GetCounty(context.Source.County));
         }
     }
 }
