@@ -8,6 +8,8 @@ namespace WlmPropertyAPI.DataAccess.Contracts
     {
         IEnumerable<PpdTransaction> GetTopN(int N);
 
+        IEnumerable<PpdTransaction> GetByYear(int year, int N);
+
         IEnumerable<PpdTransaction> GetByPostcode(string Postcode);
 
         IEnumerable<String> GetDistinctCounties();

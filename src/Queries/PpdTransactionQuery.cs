@@ -6,7 +6,6 @@ namespace WlmPropertyAPI.Queries
 {
     public class PpdTransactionQuery : ObjectGraphType
     {
-        private int defaultN = 20;
 
         public PpdTransactionQuery(IPpdTransactionRepository ppdTransactionRepository)
         {
@@ -14,12 +13,22 @@ namespace WlmPropertyAPI.Queries
             Field<ListGraphType<PpdTransactionType>>(
                 "PpdTransactions",
                 arguments: new QueryArguments(
-                            new QueryArgument<IdGraphType> { Name = "n" }),
+                            new QueryArgument<IdGraphType> { Name = "n" },
+                            new QueryArgument<IdGraphType> { Name = "year" }),
 
                 resolve: context =>
                 {
-                    var n = context.GetArgument<int>("n") | defaultN;
-                    return ppdTransactionRepository.GetTopN(n);
+                    var n = context.GetArgument<int>("n");
+                    var year = context.GetArgument<int>("year");
+
+                    if (1995 < year && year < 3000)
+                    {
+                        return ppdTransactionRepository.GetByYear(year, n);
+                    }
+                    else
+                    {
+                        return ppdTransactionRepository.GetTopN(n);
+                    }
                 }
             );
 
