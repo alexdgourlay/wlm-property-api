@@ -42,17 +42,27 @@ namespace WlmPropertyAPI
             services.AddDbContext<WLMPropertyContext>(opt => { }, ServiceLifetime.Transient);
             services.AddSingleton<IDocumentExecuter, DocumentExecuter>();
 
+
+            //
+
             // Repositories
             services.AddTransient<IPpdTransactionRepository, PpdTransactionRepository>();
             services.AddTransient<IUkCountyRepository, UkCountyRepository>();
+            services.AddTransient<ISummaryRepository, SummaryRepository>();
 
             // GraphQL Queries.
             services.AddSingleton<PpdTransactionQuery>();
             services.AddSingleton<UkCountyQuery>();
+            services.AddSingleton<SummaryQuery>();
 
             // GraphQL Types
             services.AddSingleton<PpdTransactionType>();
             services.AddSingleton<UkCountyType>();
+            services.AddSingleton<RegionSummary2019Type>();
+
+
+            //
+
 
             var sp = services.BuildServiceProvider();
             services.AddSingleton<ISchema>(new WlmPropertySchema(new FuncDependencyResolver(type => sp.GetService(type))));

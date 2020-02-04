@@ -16,6 +16,7 @@ namespace WlmPropertyAPI.Models
 
         public virtual DbSet<PpdTransaction> PpdTransaction { get; set; }
         public virtual DbSet<UkCounty> UkCounty { get; set; }
+        public virtual DbSet<RegionSummary2019> RegionSummary2019 { get; set; }
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
@@ -131,6 +132,18 @@ namespace WlmPropertyAPI.Models
                 entity.Property(e => e.Country)
                     .HasMaxLength(50)
                     .IsUnicode(false);
+
+                entity.Property(e => e.Region)
+                    .HasMaxLength(50)
+                    .IsUnicode(false);
+            });
+            modelBuilder.Entity<RegionSummary2019>(entity =>
+            {
+                entity.HasNoKey();
+
+                entity.Property(e => e.MeanPrice).HasColumnName("Mean Price");
+
+                entity.Property(e => e.NumberSold).HasColumnName("Number Sold");
 
                 entity.Property(e => e.Region)
                     .HasMaxLength(50)

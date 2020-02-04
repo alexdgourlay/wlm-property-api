@@ -8,6 +8,7 @@ namespace WlmPropertyAPI.Models
         public WlmPropertySchema(IDependencyResolver resolver) : base(resolver)
         {
             Query = resolver.Resolve<PpdTransactionQuery>();
+            Query = resolver.Resolve<SummaryQuery>();
         }
     }
 }
