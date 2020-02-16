@@ -4,10 +4,12 @@ using WlmPropertyAPI.Models;
 
 namespace WlmPropertyAPI.Queries
 {
-    public class PpdTransactionQuery : ObjectGraphType
+    public class WlmPropertyQuery : ObjectGraphType
     {
 
-        public PpdTransactionQuery(IPpdTransactionRepository ppdTransactionRepository)
+        public WlmPropertyQuery(IPpdTransactionRepository ppdTransactionRepository,
+            ISummaryRepository summaryRepository,
+            IUkCountyRepository ukCountyRepository)
         {
 
             Field<ListGraphType<PpdTransactionType>>(
@@ -29,8 +31,7 @@ namespace WlmPropertyAPI.Queries
                     {
                         return ppdTransactionRepository.GetTopN(n);
                     }
-                }
-            );
+                });
 
             Field<ListGraphType<StringGraphType>>(
                 "DistinctCounties",
@@ -39,6 +40,24 @@ namespace WlmPropertyAPI.Queries
                     return ppdTransactionRepository.GetDistinctCounties();
                 });
 
+            // SummaryRepository
+
+            Field<ListGraphType<RegionSummary2019Type>>(
+                "Summary",
+                 resolve: (context) =>
+                 {
+                     return summaryRepository.GetSummary();
+                 });
+
+
+            // UkCountyRepository
+            Field<ListGraphType<UkCountyType>>(
+           "UkCounties",
+           resolve: context =>
+           {
+               return ukCountyRepository.GetCounties();
+           }
+       );
         }
     }
 }

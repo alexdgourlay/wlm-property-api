@@ -51,17 +51,12 @@ namespace WlmPropertyAPI
             services.AddTransient<ISummaryRepository, SummaryRepository>();
 
             // GraphQL Queries.
-            services.AddSingleton<PpdTransactionQuery>();
-            services.AddSingleton<UkCountyQuery>();
-            services.AddSingleton<SummaryQuery>();
+            services.AddSingleton<WlmPropertyQuery>();
 
             // GraphQL Types
             services.AddSingleton<PpdTransactionType>();
             services.AddSingleton<UkCountyType>();
             services.AddSingleton<RegionSummary2019Type>();
-
-
-            //
 
 
             var sp = services.BuildServiceProvider();
